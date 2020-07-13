@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.10.221:3306/boot
+    password: idontcare
+    username: root
+  redis:
+    host: 192.168.10.221
+  cache:
+    cache-names: redisCache
+    type: redis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.michael.demoproject.entity
+logging:
+  level:
+    root:  info
+    org.mybatis: debug
+    com.michael.demoproject.dao: debug
+    cache: debug
