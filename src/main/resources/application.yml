@@ -5,6 +5,9 @@ spring:
     username: root
   redis:
     host: 192.168.10.221
+    jedis:
+      pool:
+        max-active: 20
   cache:
     cache-names: redisCache
     type: redis
