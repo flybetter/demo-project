@@ -63,7 +63,7 @@ public class RedisController {
 
     public String send() {
 
-        redisTemplate.convertAndSend("topic","66666");
+        redisTemplate.convertAndSend("topic","hello world!");
 
         return "success";
     }

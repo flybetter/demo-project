@@ -1,5 +1,7 @@
 package com.michael.demoproject.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.michael.demoproject.Topic.RedisMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,7 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
@@ -60,8 +63,6 @@ public class RedisConfig {
 
     }
 
-
-
     @PostConstruct
     public void init(){
         initRedisTemplate();
@@ -69,9 +70,12 @@ public class RedisConfig {
 
 
     public void initRedisTemplate(){
-        RedisSerializer redisSerializer=redisTemplate.getStringSerializer();
-        redisTemplate.setKeySerializer(redisSerializer);
-        redisTemplate.setHashKeySerializer(redisSerializer);
+        RedisSerializer stringSerializer=redisTemplate.getStringSerializer();
+        redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        // 设置值序列化
+        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setHashValueSerializer(stringSerializer);
     }
 
 
