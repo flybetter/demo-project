@@ -42,4 +42,32 @@ public class UserServiceTest  {
         logger.info(users.toString());
 
     }
+
+
+    @Test
+    public void inserUser() {
+
+        User user=new User();
+        user.setUserName("yyf");
+        user.setNote("rich");
+        user=userService.inserUser(user);
+        logger.info(user.toString());
+    }
+
+    @Test
+    public void deleteUser() {
+        userService.deleteUser(2L);
+    }
+
+    @Test
+    public void updateUserById() {
+        User user=userService.updateUserById(2L,"yyf","demo");
+        logger.info(user.toString());
+    }
+
+    @Test
+    public void findByid() {
+        User user=userService.findByid(2L);
+        logger.info(user.toString());
+    }
 }

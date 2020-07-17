@@ -1,6 +1,7 @@
 package com.michael.demoproject.service;
 
 import com.michael.demoproject.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,11 +9,11 @@ import java.util.List;
 public interface UserService {
     public List<User> findAll();
 
-    User inserUser(String userName,String note);
+    User inserUser(User user);
 
-    void deleteUser(Long id);
+    void deleteUser(Integer id);
 
-    User updateUserById(Long id,String userName,String note);
+    User updateUserById(Integer id);
 
-    User findByid(Long id);
+    User findByid(Integer id);
 }

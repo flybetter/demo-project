@@ -6,15 +6,15 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private Integer id;
-    private String userName;
-    private String note;
+    public int id;
+    public String userName;
+    public String note;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,5 +32,14 @@ public class User implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

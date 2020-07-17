@@ -24,15 +24,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CachePut(value = "redisCache",key = "'redis_user_'+#result.id")
-    public User inserUser(String userName, String note) {
-        User user=userMapper.inserUser(userName,note);
+    @CachePut(value = "redisCache",key = "'redis_user_'+#user.getId()")
+    public User inserUser(User user) {
+        int count=userMapper.inserUser(user);
         return user;
     }
 
     @Override
     @CacheEvict(value = "redisCache",key = "'redis_user_'+#id")
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
         User user=userMapper.findUserById(id);
 
         if (user != null) {
@@ -42,14 +42,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = "redisCache",condition = "#result!='null'",key = "'redis_user_'+#result.id")
-    public User updateUserById(Long id, String userName, String note) {
+    @Cacheable(value = "redisCache",condition = "#result!='null'",key = "'redis_user_'+#user.getId()")
+    public User updateUserById(Integer id) {
         User user=userMapper.findUserById(id);
+
+        if(user!=null){
+            userMapper.updateUserById(user);
+        }
+
         return  user;
     }
 
     @Override
-    public User findByid(Long id) {
-        return null;
+    @CachePut(value = "redisCache",key = "'redis_user_'+#user.getId()")
+    public User findByid(Integer id) {
+        User user=userMapper.findUserById(id);
+        return user;
     }
 }
