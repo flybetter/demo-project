@@ -11,6 +11,12 @@ spring:
   cache:
     cache-names: redisCache
     type: redis
+  data:
+    mongodb:
+      host: 192.168.10.221
+      username:
+      password:
+      database:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.michael.demoproject.entity
@@ -22,3 +28,4 @@ logging:
     org.mybatis: debug
     com.michael.demoproject.dao: debug
     cache: debug
+

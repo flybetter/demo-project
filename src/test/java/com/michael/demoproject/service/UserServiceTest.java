@@ -56,18 +56,18 @@ public class UserServiceTest  {
 
     @Test
     public void deleteUser() {
-        userService.deleteUser(2L);
+        userService.deleteUser(2);
     }
 
     @Test
     public void updateUserById() {
-        User user=userService.updateUserById(2L,"yyf","demo");
+        User user=userService.updateUserById(2);
         logger.info(user.toString());
     }
 
     @Test
     public void findByid() {
-        User user=userService.findByid(2L);
+        User user=userService.findByid(2);
         logger.info(user.toString());
     }
 }
