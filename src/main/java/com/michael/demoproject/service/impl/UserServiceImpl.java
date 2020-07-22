@@ -3,10 +3,14 @@ package com.michael.demoproject.service.impl;
 import com.michael.demoproject.dao.UserMapper;
 import com.michael.demoproject.entity.User;
 import com.michael.demoproject.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +18,8 @@ import java.util.List;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
+
+    private Logger logger=LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserMapper userMapper;
@@ -59,4 +65,10 @@ public class UserServiceImpl implements UserService {
         User user=userMapper.findUserById(id);
         return user;
     }
+
+//    @Scheduled(fixedRate = 1000)
+//    @Async
+//    public void scheduledTest(){
+//        logger.info("scheduled task demo!");
+//    }
 }
