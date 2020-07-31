@@ -40,7 +40,7 @@ public class RedisConfig {
     public RedisMessageListener redisMessageListener;
 
 
-    private ThreadPoolTaskScheduler taskScheduler=null;
+    private ThreadPoolTaskScheduler taskScheduler;
 
 
 
